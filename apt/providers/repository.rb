@@ -21,7 +21,7 @@
 def install_key_from_keyserver(key, keyserver)
   unless system("apt-key list | grep #{key}")
     execute "install-key #{key}" do
-      command "apt-key adv --keyserver #{keyserver} --recv #{key}"
+      command "apt-key adv --keyserver #{keyserver} --recv-keys #{key}"
       action :nothing
     end.run_action(:run)
     new_resource.updated_by_last_action(true)
